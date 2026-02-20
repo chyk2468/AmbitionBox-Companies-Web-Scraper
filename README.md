@@ -1,103 +1,154 @@
 # 🏢 AmbitionBox Companies Web Scraper
 
-This project scrapes company information from [AmbitionBox](https://www.ambitionbox.com/list-of-companies) — a platform for company reviews, salaries, and job listings.  
-The script automatically collects company details from all pages (1–502) and stores them in a single CSV file for further analysis.
+<div align="center">
+
+![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python&logoColor=white)
+![BeautifulSoup](https://img.shields.io/badge/BeautifulSoup4-Scraping-green?style=for-the-badge&logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![CSV](https://img.shields.io/badge/Output-CSV-orange?style=for-the-badge&logo=microsoftexcel&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen?style=for-the-badge)
+
+<br/>
+
+> **A powerful Python web scraper that collects company data from [AmbitionBox](https://www.ambitionbox.com/list-of-companies) — India's #1 platform for company reviews, salaries & job listings.**
+
+</div>
 
 ---
 
-## 📌 Features
+## 📌 Overview
 
-- 🔍 Scrapes data from 500+ AmbitionBox pages  
-- 📊 Extracts:
-  - Company Name  
-  - Rating  
-  - Number of Reviews  
-  - Salary Count  
-  - Job Openings  
-  - Company Description / Industry Info  
-- ⚡ Handles missing data gracefully  
-- 🧾 Saves all results to `ambitionbox_companies.csv`
+This project automatically scrapes **10,000+ companies** across **502 pages** from AmbitionBox and saves all extracted data into a clean, structured CSV file — ready for analysis, visualization, or research.
 
 ---
 
-## ⚙️ Requirements
+## ✨ Features
 
-Make sure you have the following Python libraries installed:
+| Feature | Description |
+|---------|-------------|
+| 🔍 **Mass Scraping** | Covers 500+ pages of AmbitionBox listings |
+| 📊 **Rich Data** | Extracts 6 key fields per company |
+| 🛡️ **Error Handling** | Gracefully handles missing or malformed data |
+| ⚡ **Efficient Output** | Saves 10,000+ records into a single CSV |
+| 🧩 **Easy to Extend** | Clean, modular notebook structure |
 
-```bash
-pip install requests beautifulsoup4 lxml pandas
+---
+
+## 📦 Data Fields Extracted
+
 ```
-
----
-
-## 🚀 How to Run
-
-1. **Clone or copy** the Python script.
-2. Run the file in your terminal or any IDE:
-   ```bash
-   python ambitionbox_scraper.py
-   ```
-3. Wait for the script to finish scraping all pages.
-4. Once done, you’ll see:
-   ```
-   ✅ Scraping completed!
-   ```
-5. The results will be saved as:
-   ```
-   ambitionbox_companies.csv
-   ```
+📁 ambitionbox_companies.csv
+├── 🏷️  Name         → Company name
+├── ⭐  Rating        → Employee rating (out of 5)
+├── 💬  Reviews       → Total number of reviews
+├── 💰  Salary        → Average salary reported
+├── 💼  Jobs          → Number of open positions
+└── 📝  Description   → Industry & headquarters location
+```
 
 ---
 
 ## 🧠 How It Works
 
-1. Loops through **pages 1 to 502** of AmbitionBox.  
-2. Sends HTTP requests using custom headers (to avoid blocking).  
-3. Parses each webpage with **BeautifulSoup (lxml)**.  
-4. Extracts:
-   - Company name (`<h2>`)
-   - Rating (`div` with style)
-   - Review count (`span` class)
-   - Salary & job counts (links containing `/salaries/` or `/jobs/`)
-   - Description text  
-5. Appends all data into a single Pandas DataFrame.  
-6. Exports the final result to CSV.
-
----
-
-## 🧩 Example Output (First Few Rows)
-
-| Name              | Rating | Reviews | Salary | Jobs | Description           |
-|-------------------|--------|----------|---------|------|------------------------|
-| TCS               | 4.1    | 25k      | 10k     | 2k   | IT Services & Consulting |
-| Infosys           | 4.0    | 21k      | 9k      | 1.5k | IT Services & Consulting |
-| Accenture         | 4.2    | 30k      | 8k      | 1k   | IT Services & Consulting |
-
----
-
-## 🧾 Output File
-
-After execution, you’ll get:
-```
-ambitionbox_companies.csv
+```mermaid
+flowchart LR
+    A[🌐 AmbitionBox\nPages 1–502] -->|HTTP Request| B[requests + headers]
+    B -->|Parse HTML| C[BeautifulSoup lxml]
+    C -->|Extract Fields| D[Pandas DataFrame]
+    D -->|Export| E[📄 ambitionbox_companies.csv]
 ```
 
-This file contains all company data across pages 1–502.
+---
+
+## 🧩 Sample Output
+
+| Name | Rating | Reviews | Salary | Jobs | Description |
+|------|--------|---------|--------|------|-------------|
+| TCS | 3.4 | (1.1L) | 9.4L | 1.1k | IT Services & Consulting \| Bangalore +427 |
+| Infosys | 3.5 | (45.3k) | 5.1L | 1.6k | IT Services & Consulting \| Bangalore +236 |
+| Accenture | 3.7 | (67.5k) | 6.3L | 34.7k | IT Services & Consulting \| Bangalore +241 |
+| HDFC Bank | 3.8 | (47.4k) | 1.4L | 175 | Banking \| Mumbai +1760 |
+| Google | 4.4 | (1.8k) | 27.5L | 528 | Software Product \| Bangalore +84 |
 
 ---
 
-## ⚠️ Note
+## ⚙️ Requirements
 
-- This scraper is for **educational and research purposes only**.  
-- Frequent scraping may violate website **terms of service**.  
-- Use responsibly and respect site bandwidth.
+Install dependencies with:
+
+```bash
+pip install requests beautifulsoup4 lxml pandas
+```
+
+Or use the one-liner:
+
+```bash
+pip install -r requirements.txt
+```
+
+> **Python 3.7+** is recommended.
 
 ---
 
-## 🧑‍💻 Author
+## 🚀 Getting Started
+
+**1. Clone the repository**
+```bash
+git clone https://github.com/YashwantChitchula/AmbitionBox-Companies-Web-Scraper.git
+cd AmbitionBox-Companies-Web-Scraper
+```
+
+**2. Install dependencies**
+```bash
+pip install requests beautifulsoup4 lxml pandas
+```
+
+**3. Run the notebook**
+Open `my.ipynb` in Jupyter Notebook or VS Code and run all cells.
+
+**4. Check the output**
+```
+✅ Scraping completed!
+📄 ambitionbox_companies.csv  →  10,000+ companies saved!
+```
+
+---
+
+## 📁 Project Structure
+
+```
+AmbitionBox-Companies-Web-Scraper/
+│
+├── 📓 my.ipynb                      # Main scraper notebook
+├── 📄 ambitionbox_companies.csv     # Scraped dataset (~846 KB, 10k+ rows)
+└── 📘 README.md                     # Project documentation
+```
+
+---
+
+## ⚠️ Disclaimer
+
+> This project is intended for **educational and research purposes only**.  
+> Frequent or aggressive scraping may violate AmbitionBox's [Terms of Service](https://www.ambitionbox.com/terms).  
+> Please scrape responsibly and respect server bandwidth.
+
+---
+
+## 👨‍💻 Author
+
+<div align="center">
 
 **Yashwant Kumar Chitchula**  
-B.Tech CSE (AI & ML) @ VIT Chennai  
+🎓 B.Tech CSE (AI & ML) — VIT Chennai
 
+[![GitHub](https://img.shields.io/badge/GitHub-YashwantChitchula-181717?style=flat-square&logo=github)](https://github.com/YashwantChitchula)
+
+</div>
 
 ---
+
+<div align="center">
+
+⭐ **If you found this project helpful, give it a star!** ⭐
+
+</div>
